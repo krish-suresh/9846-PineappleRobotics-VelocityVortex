@@ -33,7 +33,7 @@ public class RobotVals {
 
     public static final double NEVEREST_40_SPR = 1/NEVEREST_40_RPS;
     public static final double NEVEREST_60_SPR = 1/NEVEREST_60_RPS;
-
+public double x =0;
     public static final double MILLISECONDS_TO_LIFT = NEVEREST_60_SPR*NUMBER_OF_ROTATIONS_OF_LIFT*1000;
 
 
