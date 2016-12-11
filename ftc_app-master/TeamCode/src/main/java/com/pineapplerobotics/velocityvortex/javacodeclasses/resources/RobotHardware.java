@@ -1,4 +1,4 @@
-package com.pineapplerobotics.velocityvortex.javacodeclasses.resources.test;
+package com.pineapplerobotics.velocityvortex.javacodeclasses.resources;
 
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.RobotVals;
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums;

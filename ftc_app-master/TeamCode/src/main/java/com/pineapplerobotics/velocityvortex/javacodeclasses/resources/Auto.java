@@ -30,13 +30,12 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.pineapplerobotics.velocityvortex.javacodeclasses.resources.test;
+package com.pineapplerobotics.velocityvortex.javacodeclasses.resources;
 
 import static com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums.AllianceColor;
 import static com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums.AllianceColor.BLUE;
 import static com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums.AllianceColor.RED;
 
-import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.RobotVals;
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;

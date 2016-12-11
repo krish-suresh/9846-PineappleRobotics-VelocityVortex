@@ -30,14 +30,17 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.pineapplerobotics.velocityvortex.javacodeclasses.resources.test;
+package com.pineapplerobotics.velocityvortex.javacodeclasses.resources;
 
-import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.RobotHardware;
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
@@ -52,33 +55,60 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name = "Test", group = "Linear Opmode")
-// @Autonomous(...) is the other common choice
-public class Test extends LinearOpMode {
+@TeleOp(name = "Shooter", group = "Linear Opmode")  // @Autonomous(...) is the other common choice
 
-    /* Declare OpMode members. */
+public class Shooter extends LinearOpMode {
+
+    private ElapsedTime runtime = new ElapsedTime();
+    //Dc
+    //
+    // Motor flipperMotor = null;Coo
+    CRServo lift = null;
+Servo shoot = null;
     DcMotor leftShooter = null;
     DcMotor rightShooter = null;
-
-
     @Override
     public void runOpMode() throws InterruptedException {
-        rightShooter = hardwareMap.dcMotor.get("s1");
-        leftShooter = hardwareMap.dcMotor.get("s2");
-        rightShooter.setDirection(DcMotorSimple.Direction.REVERSE);
-
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        /* eg: Initialize the hardware variables. Note that the strings used here as parameters
+         * to 'get' must correspond to  names assigned during the robot configuration
+         * step (using the FTC RobotHardware Controller app on the phone).
+         */
 
-        // Wait for the game to start (driver presses PLAY)
+        shoot = hardwareMap.servo.get("s");
+        rightShooter = hardwareMap.dcMotor.get("s1");
+        leftShooter = hardwareMap.dcMotor.get("s2");
+        rightShooter.setDirection(DcMotorSimple.Direction.REVERSE);
+        lift = hardwareMap.crservo.get("cs");
         waitForStart();
+        runtime.reset();
+
+         shoot.setPosition(.2);
+
         while (opModeIsActive()) {
-            leftShooter.setPower(.5);
-            rightShooter.setPower(.5);
+
+
+
+            telemetry.addData("Status", "Run : " + runtime.toString());
+            telemetry.update();
+            if(gamepad1.a) {
+                leftShooter.setPower(1);
+                rightShooter.setPower(1);
+            }
+            if (gamepad1.y){
+                leftShooter.setPower(0);
+                rightShooter.setPower(0);
+            }
+            if (gamepad1.b){
+                shoot.setPosition(.35);
+            }else{
+                shoot.setPosition(.6);
+            }
+            lift.setPower(gamepad1.right_trigger);
         }
     }
-
 
 }
