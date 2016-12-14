@@ -3,6 +3,7 @@ package com.pineapplerobotics.velocityvortex.javacodeclasses.resources;
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.RobotVals;
 import com.pineapplerobotics.velocityvortex.javacodeclasses.resources.enums.PublicEnums;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -34,24 +35,25 @@ public class RobotHardware {
 //    public DcMotor xAxisEncoder = null;
     public DcMotor rightLifter = null;
     public DcMotor leftLifter = null;
-//    public DcMotor lifter = null;
 
+    public DcMotor rightShooter = null;
+    public DcMotor leftShooter = null;
 
     public PublicEnums.Direction robotDirection = PublicEnums.Direction.N;
     public Servo beaconRight = null;
     public Servo beaconLeft = null;
     public Servo lock = null;
+    public Servo shoot = null;
+
+    public CRServo lift = null;
 
     public ColorSensor beaconCS = null;
-    //public ColorSensor LineCS = null;
 
     public OpticalDistanceSensor lineODS = null;
 
     public GyroSensor robotGS = null;
 
     public double matColorVal = 0;
-    public DcMotor capMotor = null;
-    //public CompassSensor CompSRobot = null;
 
     public int startDirection = 0;
     public TouchSensor t = null;
@@ -75,6 +77,11 @@ public class RobotHardware {
 //lifter = opMode.hardwareMap.dcMotor.get("lifter");
 //        xAxisEncoder = opMode.hardwareMap.dcMotor.get("xEncode");
 //        yAxisEncoder = opMode.hardwareMap.dcMotor.get("yEncode");
+        shoot = opMode.hardwareMap.servo.get("s");
+        rightShooter = opMode.hardwareMap.dcMotor.get("rightShooter");
+        leftShooter = opMode.hardwareMap.dcMotor.get("leftShooter");
+
+        lift = opMode.hardwareMap.crservo.get("cs");
 
         beaconRight = opMode.hardwareMap.servo.get("beaconRight");
         beaconLeft = opMode.hardwareMap.servo.get("beaconLeft");
@@ -97,6 +104,7 @@ public class RobotHardware {
         leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
         rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
         leftLifter.setDirection(DcMotor.Direction.REVERSE);
+        rightShooter.setDirection(DcMotorSimple.Direction.REVERSE);
         // Set all motors to zero power
         leftBackMotor.setPower(0);
         leftFrontMotor.setPower(0);
