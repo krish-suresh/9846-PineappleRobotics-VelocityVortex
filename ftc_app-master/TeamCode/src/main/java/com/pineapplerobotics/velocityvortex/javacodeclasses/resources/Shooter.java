@@ -86,7 +86,7 @@ Servo shoot = null;
         waitForStart();
         runtime.reset();
 
-         shoot.setPosition(.2);
+         shoot.setPosition(.8);
 
         while (opModeIsActive()) {
 
@@ -95,19 +95,19 @@ Servo shoot = null;
             telemetry.addData("Status", "Run : " + runtime.toString());
             telemetry.update();
             if(gamepad1.a) {
-                leftShooter.setPower(1);
-                rightShooter.setPower(1);
+                leftShooter.setPower(0.35);
+                rightShooter.setPower(0.35);
             }
             if (gamepad1.y){
                 leftShooter.setPower(0);
                 rightShooter.setPower(0);
             }
             if (gamepad1.b){
-                shoot.setPosition(.35);
+                shoot.setPosition(.4);
             }else{
-                shoot.setPosition(.6);
+                shoot.setPosition(.8);
             }
-            lift.setPower(gamepad1.right_trigger);
+            lift.setPower(-gamepad1.right_trigger);
         }
     }
 
